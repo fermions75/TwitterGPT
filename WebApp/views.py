@@ -7,4 +7,5 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("<h1> TwitterGPT Starts Here! </h1>")
+    # return HttpResponse("<h1> TwitterGPT Starts Here! </h1>")
+    return render(request, 'index.html')
