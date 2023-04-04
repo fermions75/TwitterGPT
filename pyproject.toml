@@ -8,7 +8,12 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 django = "^4.1.7"
+tweepy = "^4.13.0"
+python-dotenv = "^1.0.0"
 
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.0.2"
 
 [build-system]
 requires = ["poetry-core"]
