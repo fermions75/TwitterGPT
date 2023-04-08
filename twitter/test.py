@@ -1,7 +1,9 @@
 from twitter.twitter_api import *
 from twitter.filter_tweets import *
 
-
+'''
+Adds Tweet #1 (tweet no) before every tweet
+'''
 def customize_thread_tweets_for_gpt(tweet_threads):
   cnt = 1
   customized_tweets = []
@@ -13,15 +15,22 @@ def customize_thread_tweets_for_gpt(tweet_threads):
 
   return customized_tweets
 
+''' 
+  converts the list of tweets to a single string to send to openai api
+'''
 def tweet_to_string(tweet_list):
   string = ""
   for tweets in tweet_list:
       string = string + tweets + '\n\n'
   return string
 
+
+'''
+  get tweets from a user
+'''
 def get_tweets(handle):
   id = get_userid(handle)
-  tweets = get_users_tweets(id, 10)
+  tweets = get_users_tweets(id, 30)
   urls_removed = exclude_tweets_with_url(tweets)
   thread_aggregated = thread_to_single_tweet(urls_removed)
   thread_aggregated_for_gpt = customize_thread_tweets_for_gpt(thread_aggregated)

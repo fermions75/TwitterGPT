@@ -1,15 +1,20 @@
 from django.shortcuts import render
 from dotenv import load_dotenv
 from twitter.test import get_tweets
-
+from twitter.twitter_api import get_twitter_account_name
 load_dotenv()
 import os
 import openai
 
-
+'''
+redirects to landing page
+'''
 def index(request):
     return render(request, 'index.html')
 
+'''
+returns the generated tweets from openai api to UI
+'''
 def get_generated_tweets(request):
     openai_api = os.getenv("openai_api_key")
     openai.api_key = openai_api
@@ -36,6 +41,7 @@ def get_generated_tweets(request):
     split_tweets = generated_tweets.split("\n\n")
     print(split_tweets)
     param = {
+        'name' : get_twitter_account_name(twitter_handle),
         'handle' : twitter_handle,
         'tweets' :  split_tweets
     }
