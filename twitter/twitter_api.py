@@ -55,7 +55,12 @@ def get_users_tweets(userid, max_results=800):
         for j in range(take_tweets):
             remaining -= 1
             responses.append(users_tweets.data[j])
-        pagination_token = users_tweets.meta["next_token"]  # get next token
+        if "next_token" in users_tweets.meta:
+            pagination_token = users_tweets.meta["next_token"]  # get next token
+        else:
+            pagination_token = None
+        if(pagination_token == None):
+            break
     return responses
 
 # id = get_userid("elonmusk")
