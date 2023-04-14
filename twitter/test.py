@@ -1,20 +1,49 @@
-from twitter_api import get_userid, get_users_tweets
-from filter_tweets import exclude_tweets_with_url, thread_to_single_tweet
+from twitter.twitter_api import *
+from twitter.filter_tweets import *
 
-id = get_userid("adcock_brett")
-print(id)
-tweets = get_users_tweets(id,100)
-print(len(tweets))
-print(tweets)
-urls_removed = exclude_tweets_with_url(tweets)
+'''
+Adds Tweet #1 (tweet no) before every tweet
+'''
+def customize_thread_tweets_for_gpt(tweet_threads):
+  cnt = 1
+  customized_tweets = []
+  for thread in tweet_threads:
+    tweet_no = 'Tweet ' + str(cnt) + ':\n'
+    cnt = cnt + 1
+    main_tweet = tweet_no + thread
+    customized_tweets.append(main_tweet)
 
-print(len(urls_removed))
-print(urls_removed)
+  return customized_tweets
 
-thread_aggregated = thread_to_single_tweet(urls_removed)
+''' 
+  converts the list of tweets to a single string to send to openai api
+'''
+def tweet_to_string(tweet_list):
+  string = ""
+  for tweets in tweet_list:
+      string = string + tweets + '\n\n'
+  return string
 
-print(thread_aggregated)
 
-for thread in thread_aggregated:
-  print(thread)
-  print("------------------")
+'''
+  get tweets from a user
+'''
+def get_tweets(handle):
+  id = get_userid(handle)
+  tweets = get_users_tweets(id, 30)
+  urls_removed = exclude_tweets_with_url(tweets)
+  thread_aggregated = thread_to_single_tweet(urls_removed)
+  thread_aggregated_for_gpt = customize_thread_tweets_for_gpt(thread_aggregated)
+  string_of_tweets = tweet_to_string(thread_aggregated_for_gpt)
+  return string_of_tweets
+
+# curr_list = get_tweets("naval")
+# print(curr_list)
+# for tweets in curr_list:
+#     print(tweets)
+#     print("------------------")
+
+
+
+
+

@@ -18,106 +18,58 @@
 <div class="banner">
   <h1>Generate tweets like a pro!</h1>
   <p>Use our free tool to create engaging and original tweets for your brand or personal account.</p>
-
-
-<div class="wrap">
-   <div class="search">
-      <input type="text" class="searchTerm" placeholder="@twitter_handle">
-      <button type="submit" class="searchButton">
-        GO!
-     </button>
-   </div>
-</div>
+    <div class="wrap">
+       <div class="search">
+           <form action="gentweets" method="post" class="wrap">{% csrf_token %}
+              <input type="text" name="handle" class="searchTerm" placeholder="@twitter_handle">
+               <button type="submit" class="searchButton"> Go </button>
+           </form>
+       </div>
+    </div>
 </div>
 
 <div class="container mt-5 mb-3">
     <div class="row">
+        <!--        loop      -->
+        {% for tweet in tweets %}
         <div class="col-md-4">
             <div class="card p-3 mb-2">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
-                        <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
+                        <div class="icon"> </div>
                         <div class="ms-2 c-details">
-                            <h6 class="mb-0">Naval</h6> <span>@naval</span>
+                            <h6 class="mb-0">{{name}}</h6> <span>@{{handle}}</span>
                         </div>
                     </div>
                 </div>
 		    <hr>
                 <div class="mt-6">
-                    <p> The most dangerous person in the world is someone who feels they are a victim. The most dangerous person in the world is someone who feels they are a victim.</p>
+                    <p> {{ tweet }} </p>
                 </div>
 		    <hr>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card p-3 mb-2">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
-                        <div class="ms-2 c-details">
-                            <h6 class="mb-0">Naval</h6> <span>@naval</span>
-                        </div>
-                    </div>
-                </div>
-		    <hr>
-                <div class="mt-6">
-                    <p> Everyone’s worth is determined by how much they’re worth to me.</p>
-                </div>
-		    <hr>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card p-3 mb-2">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
-                        <div class="ms-2 c-details">
-                            <h6 class="mb-0">Naval</h6> <span>@naval</span>
-                        </div>
-                    </div>
-                </div>
-		    <hr>
-                <div class="mt-6">
-                    <p> The most talented person in the room is the one doing the least.</p>
-                </div>
-		    <hr>
-            </div>
-        </div>
-	  <div class="col-md-4">
-            <div class="card p-3 mb-2">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
-                        <div class="ms-2 c-details">
-                            <h6 class="mb-0">Naval</h6> <span>@naval</span>
-                        </div>
-                    </div>
-                </div>
-		    <hr>
-                <div class="mt-6">
-                    <p> The truth is, modern capitalism is worse than communism.</p>
-                </div>
-		    <hr>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card p-3 mb-2">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
-                        <div class="ms-2 c-details">
-                            <h6 class="mb-0">Naval</h6> <span>@naval</span>
-                        </div>
-                    </div>
-                </div>
-		    <hr>
-                <div class="mt-6">
-                    <p> You only fail when you give up.</p>
-                </div>
-		    <hr>
-            </div>
-        </div>
+        {% endfor %}
+
+<!--        <div class="col-md-4">-->
+<!--            <div class="card p-3 mb-2">-->
+<!--                <div class="d-flex justify-content-between">-->
+<!--                    <div class="d-flex flex-row align-items-center">-->
+<!--                        <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>-->
+<!--                        <div class="ms-2 c-details">-->
+<!--                            <h6 class="mb-0">Naval</h6> <span>@naval</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--		    <hr>-->
+<!--                <div class="mt-6">-->
+<!--                    <p> The most dangerous person in the world is someone who feels they are a victim. The most dangerous person in the world is someone who feels they are a victim.</p>-->
+<!--                </div>-->
+<!--		    <hr>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </div>
+
 </body>
 </html>

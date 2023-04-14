@@ -20,8 +20,8 @@ fine_tuned_model = "davinci:ft-personal:twitter-test-elon-2023-04-08-08-09-36"
 new_prompt = "Write a tweet that Elon Musk would send out."
 
 res = openai.Completion.create(
-  model=prompt=fine_tuned_model,
-  new_prompt
+  model=fine_tuned_model,
+  prompt=new_prompt
 )
 
 print(res)
